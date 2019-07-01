@@ -1,8 +1,8 @@
 
 // ref: https://umijs.org/config/
 export default {
-  base:'/passione',
-  publicPath: 'https://benjamin15122.github.io/passione/',
+  base:'/Passione',
+  publicPath: 'https://benjamin15122.github.io/Passione/',
   exportStatic: true,
   treeShaking: true,
   plugins: [
