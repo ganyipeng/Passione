@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import { Card, Row, Col, Button, Icon } from 'antd'
+import { Card, Row, Col, Button, Icon, } from 'antd'
 import Link from 'umi/link'
 // import brace from 'brace'
 import AceEditor from 'react-ace'
@@ -10,6 +10,10 @@ import 'brace/theme/tomorrow'
 import 'antd/dist/antd.css'
 import 'json-schema-editor-visual/dist/main.css'
 
+const editor={
+  width: "100%",
+  height: "600px",
+}
 const option = {}
 const SchemaEditor = schemaEditor(option)
 
@@ -22,7 +26,11 @@ const SchemaEditor = schemaEditor(option)
 class Pronto extends Component {
   render() {
     const {dispatch} = this.props
-    return <Card
+    return( 
+    <div>
+      {/* <PageHeader onBack={()=>(<Link to='/Arrivederci'></Link>)} title="" backIcon={<Icon type="arrow-right" />} /> */}
+    <Card
+      bordered
       extra={
         <Link to='/Arrivederci'>
           <Button type="primary">next<Icon type="right" /></Button>
@@ -32,7 +40,9 @@ class Pronto extends Component {
     >
       <Row>
         <Col span={12}>
+          <Card>
           <AceEditor
+            style={editor}
             placeholder="Placeholder Text"
             mode="javascript"
             theme="tomorrow"
@@ -51,17 +61,24 @@ class Pronto extends Component {
               showLineNumbers: true,
               tabSize: 2,
             }} />
+            </Card>
         </Col>
+        {/* <Col span={1}>
+          <Row><Divider type="vertical" /></Row>
+        </Col> */}
         <Col span={12}>
+          <Card>
           <SchemaEditor
             data={JSON.stringify(this.props.schema)}
             onChange={schema => {
               dispatch({ type: 'bucciarati/updateSchema', payload: JSON.parse(schema) });
             }}
           />
+          </Card>
         </Col>
       </Row>
     </Card>
+    </div>)
   }
 }
 

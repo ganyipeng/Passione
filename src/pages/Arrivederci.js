@@ -6,6 +6,11 @@ import 'brace/mode/javascript'
 import 'brace/theme/tomorrow'
 import { connect } from 'dva'
 import Form from 'react-jsonschema-form'
+import 'bootstrap/dist/css/bootstrap.css';
+
+const editor={
+    width: "100%"
+}
 
 const getDefaultData = (schema) => {
     var data = {}
@@ -58,6 +63,7 @@ class Arrivederci extends Component {
         debugger
         const val = eval('`' + tpl + '`')
         return <Card
+            bordered={false}
             extra={
                 <Link to='/'>
                     <Button type="primary"><Icon type="left" />prev</Button>
@@ -67,7 +73,9 @@ class Arrivederci extends Component {
         >
             <Row>
                 <Col span={12}>
+                    <Card>
                     <AceEditor
+                        style={editor}
                         placeholder="Placeholder Text"
                         mode="javascript"
                         theme="tomorrow"
@@ -87,8 +95,10 @@ class Arrivederci extends Component {
                             showLineNumbers: true,
                             tabSize: 2,
                         }} />
+                    </Card>
                 </Col>
                 <Col span={12}>
+                    <Card>
                     <Form
                         schema={this.props.schema}
                         formData={this.props.data}
@@ -96,6 +106,7 @@ class Arrivederci extends Component {
                         onSubmit={e => dispatch({ type: 'bucciarati/updateData', payload: e.formData })}
                         onError={e => console.log(e)}
                     />
+                    </Card>
                 </Col>
             </Row>
         </Card>
