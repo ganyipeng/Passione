@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Antd,{ Card, Row, Col } from 'antd'
+import Antd, { Card, Row, Col } from 'antd'
 import Link from 'umi/link'
 // import brace from 'brace'
 // import AceEditor from 'react-ace'
@@ -12,7 +12,7 @@ import 'json-schema-editor-visual/dist/main.css'
 import { Editor } from 'slate-react'
 import { isKeyHotkey } from 'is-hotkey'
 import { Value } from 'slate'
-import {  Icon, Toolbar, Button } from './component'
+import { Icon, Toolbar, Button } from './component'
 const AntButton = Antd.Button
 const option = {}
 const SchemaEditor = schemaEditor(option)
@@ -38,13 +38,13 @@ class Pronto extends Component {
   }
 
   hasMark = type => {
-    const {activeMarks} = this.state.value
-    return activeMarks===undefined?false:activeMarks.some(mark => mark.type === type)
+    const { activeMarks } = this.state.value
+    return activeMarks === undefined ? false : activeMarks.some(mark => mark.type === type)
   }
 
   hasBlock = type => {
-    const {blocks} = this.state.value
-    return blocks===undefined?false:blocks.some(node => node.type === type)
+    const { blocks } = this.state.value
+    return blocks === undefined ? false : blocks.some(node => node.type === type)
   }
 
   ref = editor => {
@@ -79,7 +79,7 @@ class Pronto extends Component {
     if (['numbered-list', 'bulleted-list'].includes(type)) {
       const { value: { document, blocks } } = this.state
 
-      if (blocks&&blocks.size > 0) {
+      if (blocks && blocks.size > 0) {
         const parent = document.getParent(blocks.first().key)
         isActive = this.hasBlock('list-item') && parent && parent.type === type
       }
@@ -214,39 +214,49 @@ class Pronto extends Component {
               <AntButton type="primary">next<Icon type="right" /></AntButton>
             </Link>
           }
-          style={{ height: 500,overflowY: 'scroll' }}
+          style={{ height: '95%', margin: '20px' }}
         >
           <Row>
             <Col span={12}>
               <Row>
-              <Card>
-                  <Toolbar>
-                    {this.renderMarkButton('bold', 'format_bold')}
-                    {this.renderMarkButton('italic', 'format_italic')}
-                    {this.renderMarkButton('underlined', 'format_underlined')}
-                    {this.renderMarkButton('code', 'code')}
-                    {this.renderBlockButton('heading-one', 'looks_one')}
-                    {this.renderBlockButton('heading-two', 'looks_two')}
-                    {this.renderBlockButton('block-quote', 'format_quote')}
-                    {this.renderBlockButton('numbered-list', 'format_list_numbered')}
-                    {this.renderBlockButton('bulleted-list', 'format_list_bulleted')}
-                  </Toolbar>
-                  <Editor
-                    spellCheck
-                    autoFocus
-                    placeholder="Enter some rich text..."
-                    ref={this.ref}
-                    value={this.state.value}
-                    onChange={this.onChange}
-                    onKeyDown={this.onKeyDown}
-                    renderBlock={this.renderBlock}
-                    renderMark={this.renderMark}
-                  />
-              </Card>
-              </Row>
-              <Row>
-                <Col span={21}></Col>
-                <Col span={3}><AntButton type="primary" style={{marginTop: '10px'}} onClick={this.onSubmit}>Submit</AntButton></Col>
+                <Card
+                  style={{
+                    width: '100%',
+                    height: 550,
+                  }}
+                >
+                  <Row>
+                    <Toolbar>
+                      {this.renderMarkButton('bold', 'format_bold')}
+                      {this.renderMarkButton('italic', 'format_italic')}
+                      {this.renderMarkButton('underlined', 'format_underlined')}
+                      {this.renderMarkButton('code', 'code')}
+                      {this.renderBlockButton('heading-one', 'looks_one')}
+                      {this.renderBlockButton('heading-two', 'looks_two')}
+                      {this.renderBlockButton('block-quote', 'format_quote')}
+                      {this.renderBlockButton('numbered-list', 'format_list_numbered')}
+                      {this.renderBlockButton('bulleted-list', 'format_list_bulleted')}
+                    </Toolbar>
+                  </Row>
+                  <Row>
+                    <Editor
+                      style={{ height: '350px',overflowY: 'scroll' }}
+                      spellCheck
+                      autoFocus
+                      placeholder="Enter some rich text..."
+                      ref={this.ref}
+                      value={this.state.value}
+                      onChange={this.onChange}
+                      onKeyDown={this.onKeyDown}
+                      renderBlock={this.renderBlock}
+                      renderMark={this.renderMark}
+                    />
+                  </Row>
+                  <Row>
+                    <Col span={21}></Col>
+                    <Col span={3}><AntButton type="primary" style={{ marginTop: '10px' }} onClick={this.onSubmit}>Submit</AntButton></Col>
+                  </Row>
+                </Card>
               </Row>
             </Col>
             {/* <Col span={1}>
