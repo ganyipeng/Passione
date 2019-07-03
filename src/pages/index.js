@@ -12,6 +12,9 @@ import { isKeyHotkey } from 'is-hotkey'
 import { Value } from 'slate'
 import {  Toolbar, Button } from './component'
 
+const IconFont = Icon.createFromIconfontCN({
+  scriptUrl: '//at.alicdn.com/t/font_1275479_dktozkdwb0v.js',
+});
 const AntButton = Antd.Button
 const option = {}
 const SchemaEditor = schemaEditor(option)
@@ -96,8 +99,8 @@ class Pronto extends Component {
         active={isActive}
         onMouseDown={event => this.onClickBlock(event, type)}
       >
-        <Icon type={icon} />
-        {/* <IconFont type={icon} /> */}
+        {/* <Icon type={icon} /> */}
+        <IconFont type={icon} />
       </Button>
     )
   }
@@ -226,16 +229,17 @@ class Pronto extends Component {
             <Col span={12}>
               <Row>
               <Card>
+                  {/* <link rel="stylesheet" href="https://at.alicdn.com/t/font_1275479_17sgj6yd9g5.css"> */}
                   <Toolbar>
                     {this.renderMarkButton('bold', 'bold')}
                     {this.renderMarkButton('italic', 'italic')}
                     {this.renderMarkButton('underlined', 'underline')}
                     {/* {this.renderMarkButton('code', 'code')} */}
-                    {/* {this.renderBlockButton('heading-one', 'icon-looksone')}
+                    {this.renderBlockButton('heading-one', 'icon-looksone')}
                     {this.renderBlockButton('heading-two', 'icon-lookstwo')}
-                    {this.renderBlockButton('block-quote', 'icon-quote2')} */}
-                    {this.renderBlockButton('numbered-list', 'ordered-list')}
-                    {this.renderBlockButton('bulleted-list', 'unordered-list')}
+                    {this.renderBlockButton('block-quote', 'icon-quote2')}
+                    {this.renderBlockButton('numbered-list', 'icon-orderedlist')}
+                    {this.renderBlockButton('bulleted-list', 'icon-unorderedlist')}
                   </Toolbar>
                   <Editor
                     style={{ height: 500,overflowY: 'scroll' }}
