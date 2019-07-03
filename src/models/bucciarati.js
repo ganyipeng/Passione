@@ -1,22 +1,8 @@
+import initialValue from './value.json'
 export default {
     namespace: 'bucciarati',
     state: {
-        template: {
-            document: {
-              nodes: [
-                {
-                  object: 'block',
-                  type: 'paragraph',
-                  nodes: [
-                    {
-                      object: 'text',
-                      text: '',
-                    },
-                  ],
-                },
-              ],
-            },
-          },
+        template: initialValue,
         schema: {
             type: 'object',
             title: 'empty object',

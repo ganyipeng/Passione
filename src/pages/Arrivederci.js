@@ -52,7 +52,7 @@ const getDefaultData = (schema) => {
 })
 class Arrivederci extends Component {
     state = {
-        value: this.props.template,
+        value: Value.fromJSON(this.props.template),
     }
 
     componentDidMount(){
