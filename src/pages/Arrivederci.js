@@ -1,15 +1,14 @@
 import { Component } from 'react'
 import { Card, Row, Col, Button, Icon } from 'antd'
 import Link from 'umi/link'
-import AceEditor from 'react-ace'
 import 'brace/mode/javascript'
 import 'brace/theme/tomorrow'
 import { connect } from 'dva'
 import Form from 'react-jsonschema-form'
-import 'bootstrap/dist/css/bootstrap.css';
-import {Editor} from 'slate-react';
-import {Value} from 'slate';
-import Plain from 'slate-plain-serializer';
+import 'bootstrap/dist/css/bootstrap.css'
+import {Editor} from 'slate-react'
+import {Value} from 'slate'
+import Plain from 'slate-plain-serializer'
 
 
 const getDefaultData = (schema) => {
@@ -64,8 +63,6 @@ class Arrivederci extends Component {
     onChange = ({value}) => {
         this.props.dispatch({ type: 'bucciarati/updateTemplate', payload: value });
         this.setState({value: this.props.template});
-        console.log(this.state.value)
-
     }
 
     render() {
@@ -92,28 +89,12 @@ class Arrivederci extends Component {
                     }}
                     >
                     
-                    <Editor style={{height: 500,overflowY: 'scroll'}} placeholder="Placeholder" value={Value.fromJSON(this.props.template)} onChange={this.onChange} />
-                    
-                    {/* <AceEditor
-                        placeholder="Placeholder Text"
-                        mode="javascript"
-                        theme="tomorrow"
-                        name="Demo Editor"
-                        onLoad={this.onLoad}
-                        onChange={this.onChange}
-                        fontSize={14}
-                        showPrintMargin={true}
-                        showGutter={true}
-                        highlightActiveLine={true}
-                        value={val}
-                        readOnly={true}
-                        setOptions={{
-                            enableBasicAutocompletion: false,
-                            enableLiveAutocompletion: false,
-                            enableSnippets: false,
-                            showLineNumbers: true,
-                            tabSize: 2,
-                        }} /> */}
+                    <Editor 
+                        style={{height: 500,overflowY: 'scroll'}} 
+                        placeholder="Placeholder" 
+                        value={Value.fromJSON(this.props.template)} 
+                        onChange={this.onChange} 
+                        readOnly={true}/>        
                     </Card>
                 </Col>
                 <Col span={12}>

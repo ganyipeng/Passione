@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import Antd,{ Card, Row, Col } from 'antd'
+import Antd,{ Card, Row, Col, Icon } from 'antd'
 import Link from 'umi/link'
-// import brace from 'brace'
-// import AceEditor from 'react-ace'
 import schemaEditor from 'json-schema-editor-visual/dist/main.js'
 import { connect } from 'dva'
 import 'brace/mode/javascript'
@@ -12,7 +10,8 @@ import 'json-schema-editor-visual/dist/main.css'
 import { Editor } from 'slate-react'
 import { isKeyHotkey } from 'is-hotkey'
 import { Value } from 'slate'
-import {  Icon, Toolbar, Button } from './component'
+import {  Toolbar, Button } from './component'
+
 const AntButton = Antd.Button
 const option = {}
 const SchemaEditor = schemaEditor(option)
@@ -21,6 +20,7 @@ const isBoldHotkey = isKeyHotkey('mod+b')
 const isItalicHotkey = isKeyHotkey('mod+i')
 const isUnderlinedHotkey = isKeyHotkey('mod+u')
 const isCodeHotkey = isKeyHotkey('mod+`')
+
 @connect(({ bucciarati }) => {
   return {
     template: bucciarati.template,
@@ -55,6 +55,12 @@ class Pronto extends Component {
     this.setState({ value })
   }
 
+  // onChange = ({value}) => {
+  //   this.props.dispatch({ type: 'bucciarati/updateTemplate', payload: value });
+  //   this.setState({value: this.props.template});
+  //   console.log(this.state.value)
+  // }
+
   onSubmit = () => {
     const value = this.state.value
     this.props.dispatch({ type: 'bucciarati/updateTemplate', payload: value.toJSON() });
@@ -68,7 +74,7 @@ class Pronto extends Component {
         active={isActive}
         onMouseDown={event => this.onClickMark(event, type)}
       >
-        <Icon>{icon}</Icon>
+        <Icon type={icon} />
       </Button>
     )
   }
@@ -90,7 +96,8 @@ class Pronto extends Component {
         active={isActive}
         onMouseDown={event => this.onClickBlock(event, type)}
       >
-        <Icon>{icon}</Icon>
+        <Icon type={icon} />
+        {/* <IconFont type={icon} /> */}
       </Button>
     )
   }
@@ -206,7 +213,6 @@ class Pronto extends Component {
     const { dispatch } = this.props
     return (
       <div>
-        {/* <PageHeader onBack={()=>(<Link to='/Arrivederci'></Link>)} title="" backIcon={<Icon type="arrow-right" />} /> */}
         <Card
           bordered
           extra={
@@ -214,24 +220,25 @@ class Pronto extends Component {
               <AntButton type="primary">next<Icon type="right" /></AntButton>
             </Link>
           }
-          style={{ height: 500,overflowY: 'scroll' }}
+          style={{ height: '95%', margin: '20px' }}
         >
           <Row>
             <Col span={12}>
               <Row>
               <Card>
                   <Toolbar>
-                    {this.renderMarkButton('bold', 'format_bold')}
-                    {this.renderMarkButton('italic', 'format_italic')}
-                    {this.renderMarkButton('underlined', 'format_underlined')}
-                    {this.renderMarkButton('code', 'code')}
-                    {this.renderBlockButton('heading-one', 'looks_one')}
-                    {this.renderBlockButton('heading-two', 'looks_two')}
-                    {this.renderBlockButton('block-quote', 'format_quote')}
-                    {this.renderBlockButton('numbered-list', 'format_list_numbered')}
-                    {this.renderBlockButton('bulleted-list', 'format_list_bulleted')}
+                    {this.renderMarkButton('bold', 'bold')}
+                    {this.renderMarkButton('italic', 'italic')}
+                    {this.renderMarkButton('underlined', 'underline')}
+                    {/* {this.renderMarkButton('code', 'code')} */}
+                    {/* {this.renderBlockButton('heading-one', 'icon-looksone')}
+                    {this.renderBlockButton('heading-two', 'icon-lookstwo')}
+                    {this.renderBlockButton('block-quote', 'icon-quote2')} */}
+                    {this.renderBlockButton('numbered-list', 'ordered-list')}
+                    {this.renderBlockButton('bulleted-list', 'unordered-list')}
                   </Toolbar>
                   <Editor
+                    style={{ height: 500,overflowY: 'scroll' }}
                     spellCheck
                     autoFocus
                     placeholder="Enter some rich text..."
