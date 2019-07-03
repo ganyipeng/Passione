@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Antd,{ Card, Row, Col, Icon } from 'antd'
+import Antd, { Card, Row, Col, Icon } from 'antd'
 import Link from 'umi/link'
 import schemaEditor from 'json-schema-editor-visual/dist/main.js'
 import { connect } from 'dva'
@@ -10,7 +10,7 @@ import 'json-schema-editor-visual/dist/main.css'
 import { Editor } from 'slate-react'
 import { isKeyHotkey } from 'is-hotkey'
 import { Value } from 'slate'
-import {  Toolbar, Button } from './component'
+import { Toolbar, Button } from './component'
 
 const IconFont = Icon.createFromIconfontCN({
   scriptUrl: '//at.alicdn.com/t/font_1275479_dktozkdwb0v.js',
@@ -228,36 +228,43 @@ class Pronto extends Component {
           <Row>
             <Col span={12}>
               <Row>
-              <Card>
+                <Card style={{
+                  width: '100%',
+                  height: 550,
+                }}>
                   {/* <link rel="stylesheet" href="https://at.alicdn.com/t/font_1275479_17sgj6yd9g5.css"> */}
-                  <Toolbar>
-                    {this.renderMarkButton('bold', 'bold')}
-                    {this.renderMarkButton('italic', 'italic')}
-                    {this.renderMarkButton('underlined', 'underline')}
-                    {/* {this.renderMarkButton('code', 'code')} */}
-                    {this.renderBlockButton('heading-one', 'icon-looksone')}
-                    {this.renderBlockButton('heading-two', 'icon-lookstwo')}
-                    {this.renderBlockButton('block-quote', 'icon-quote2')}
-                    {this.renderBlockButton('numbered-list', 'icon-orderedlist')}
-                    {this.renderBlockButton('bulleted-list', 'icon-unorderedlist')}
-                  </Toolbar>
-                  <Editor
-                    style={{ height: 500,overflowY: 'scroll' }}
-                    spellCheck
-                    autoFocus
-                    placeholder="Enter some rich text..."
-                    ref={this.ref}
-                    value={this.state.value}
-                    onChange={this.onChange}
-                    onKeyDown={this.onKeyDown}
-                    renderBlock={this.renderBlock}
-                    renderMark={this.renderMark}
-                  />
-              </Card>
-              </Row>
-              <Row>
-                <Col span={21}></Col>
-                <Col span={3}><AntButton type="primary" style={{marginTop: '10px'}} onClick={this.onSubmit}>Submit</AntButton></Col>
+                  <Row>
+                    <Toolbar>
+                      {this.renderMarkButton('bold', 'bold')}
+                      {this.renderMarkButton('italic', 'italic')}
+                      {this.renderMarkButton('underlined', 'underline')}
+                      {/* {this.renderMarkButton('code', 'code')} */}
+                      {this.renderBlockButton('heading-one', 'icon-looksone')}
+                      {this.renderBlockButton('heading-two', 'icon-lookstwo')}
+                      {this.renderBlockButton('block-quote', 'icon-quote2')}
+                      {this.renderBlockButton('numbered-list', 'icon-orderedlist')}
+                      {this.renderBlockButton('bulleted-list', 'icon-unorderedlist')}
+                    </Toolbar>
+                  </Row>
+                  <Row>
+                    <Editor
+                      style={{ height: 400, overflowY: 'scroll' }}
+                      spellCheck
+                      autoFocus
+                      placeholder="Enter some rich text..."
+                      ref={this.ref}
+                      value={this.state.value}
+                      onChange={this.onChange}
+                      onKeyDown={this.onKeyDown}
+                      renderBlock={this.renderBlock}
+                      renderMark={this.renderMark}
+                    />
+                  </Row>
+                  <Row>
+                    <Col span={21}></Col>
+                    <Col span={3}><AntButton type="primary" style={{ marginTop: '10px' }} onClick={this.onSubmit}>Submit</AntButton></Col>
+                  </Row>
+                </Card>
               </Row>
             </Col>
             {/* <Col span={1}>
