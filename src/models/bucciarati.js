@@ -1,7 +1,22 @@
 export default {
     namespace: 'bucciarati',
     state: {
-        template: '',
+        template: {
+            document: {
+              nodes: [
+                {
+                  object: 'block',
+                  type: 'paragraph',
+                  nodes: [
+                    {
+                      object: 'text',
+                      text: '',
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         schema: {
             type: 'object',
             title: 'empty object',
