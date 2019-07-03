@@ -170,6 +170,7 @@ class Arrivederci extends Component {
                             onKeyDown={this.onKeyDown}
                             renderBlock={this.renderBlock}
                             renderMark={this.renderMark}
+                            readOnly={true}
                         />
                     </Card>
                 </Col>
